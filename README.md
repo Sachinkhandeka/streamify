@@ -13,6 +13,13 @@ Streamify is a powerful music streaming analytics dashboard that provides real-t
 - **Top Streamed Songs Chart** 🎵 
 - Dark mode support for all charts
 
+### 📊 Advanced Table Features for Song Streams
+-  **Sorting** Click on Date Streamed or Stream Count to toggle sorting (ascending/descending).
+-  **Filtering** Search by song name or artist (case-insensitive).
+-  **Highlighting** The entered search term is highlighted in the results.
+-  **Pagination** Smooth navigation with next/previous buttons.
+-  **Responsive Design** Fully adaptable to mobile and desktop screens.
+
 ### 🌐 UI Enhancements
 - Fully **responsive** and **dark mode compatible**.
 - Beautiful **chart designs with smooth interaction**.
