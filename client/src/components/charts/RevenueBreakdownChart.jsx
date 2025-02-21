@@ -61,7 +61,7 @@ const RevenueBreakdownChart = ({ revenueBreakdown }) => {
     };
 
     return (
-        <div className="w-full max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 dark:text-gray-100 shadow-lg rounded-xl">
+        <div className="w-full max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 dark:text-gray-100 rounded-xl">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 text-center">
                 💰 Revenue Breakdown
             </h2>
