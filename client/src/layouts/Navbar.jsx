@@ -12,7 +12,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
 
     return (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md sticky top-0 z-10">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex items-center gap-3">
                     {/* Sidebar Toggle Button */}

@@ -15,12 +15,11 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 export default function App() {
   return (
     <BrowserRouter>
-      <section className="h-screen flex flex-col">
+      <section className="min-h-screen">
         {/* Navbar */}
-        <Navbar />
-
+        <Navbar/>
         {/* Sidebar & Main Content */}
-        <div className="flex flex-grow">
+        <div>
           <Sidebar /> {/* Sidebar will always be visible */}
           <main className="flex-grow p-1 bg-white dark:bg-gray-700">
             <Routes>
