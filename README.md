@@ -1,32 +1,48 @@
-# Streamify
+# Streamify 🎵📊  
 
-Streamify is a powerful music streaming analytics dashboard that provides real-time insights into user activity, total streams, revenue, and top-performing artists.
+Streamify is a powerful **music streaming analytics dashboard** that provides real-time insights into **user activity, total streams, revenue, and top-performing artists**.
 
-## Features
-- 📊 **Real-time Metrics** – Track total users, active users, total streams, and revenue.
-- 🎵 **Top Artist Insights** – See which artist is leading the charts.
-- 📈 **User Growth Analysis** – View user engagement trends month by month.
-- 💰 **Revenue Breakdown** – Understand earnings from subscriptions and ads.
-- 🎶 **Top Streamed Songs** – Discover the most popular tracks.
-- **User Growth Chart** 📈
-- **Revenue Breakdown Chart** 💵
-- **Top Streamed Songs Chart** 🎵 
-- Dark mode support for all charts
+## 🚀 Features  
 
-### 📊 Advanced Table Features for Song Streams
--  **Sorting** Click on Date Streamed or Stream Count to toggle sorting (ascending/descending).
--  **Filtering** Search by song name or artist (case-insensitive).
--  **Highlighting** The entered search term is highlighted in the results.
--  **Pagination** Smooth navigation with next/previous buttons.
--  **Responsive Design** Fully adaptable to mobile and desktop screens.
+### 📊 **Real-time Analytics**  
+- **Total Users & Active Users** – Get an overview of user engagement.  
+- **Total Streams & Revenue** – Track how well your platform is performing.  
+- **Monthly Growth Charts** – Understand user growth and revenue trends.  
 
-### 🌐 UI Enhancements
-- Fully **responsive** and **dark mode compatible**.
-- Beautiful **chart designs with smooth interaction**.
+### 🎵 **Top Artists Table**  
+- **Sorting & Filtering** – Sort by artist name, genre, total streams, followers, or country.  
+- **Search with Highlighting** – Easily find artists with a search term that gets highlighted in results.  
+- **Pagination** – Smooth navigation across pages.  
+
+### 💰 **Revenue Breakdown**  
+- **Subscription vs. Ads Revenue** – See detailed earnings insights.  
+- **Revenue Over Time Chart** – Track earnings growth month by month.  
+
+### 🎶 **Top Streamed Songs Table**  
+- **Sorting & Filtering** – Organize by song name, artist, stream count, or date streamed.  
+- **Search with Highlighting** – Quickly locate songs with an interactive search.  
+- **Pagination** – Easy-to-use pagination for browsing large datasets.  
+
+### 👥 **Users Table**  
+- **Search & Sort** – Look up users by name, email, or username.  
+- **Subscription Filtering** – View users based on their subscription type.  
+- **Pagination** – Navigate through user records smoothly.  
+
+### 🌐 **Enhanced UI & Custom 404 Page**  
+- **Beautiful UI with Dark Mode Support**  
+- **Fully Responsive** – Works seamlessly on desktop and mobile.  
+- **Custom Not Found Page** – A visually appealing 404 page to improve UX.  
 
 ---
 
-## Tech Stack
-- **Frontend:** React, Tailwind CSS, Flowbite-React
-- **State Management:** Redux Toolkit
-- **Data Visualization**: Chart.js, react-chartjs-2,
+## 🛠️ Tech Stack  
+
+- **Frontend:** React, Tailwind CSS  
+- **State Management:** Redux Toolkit  
+- **Icons:** React Icons  
+- **Data Visualization:** Chart.js, react-chartjs-2  
+- **Pagination & Search:** Custom implementation for enhanced performance  
+
+---
+
+🔹 **Built for music streaming platforms to analyze engagement, revenue, and artist performance efficiently!** 🎶📊  
