@@ -6,8 +6,9 @@ import data from "../api/data.js";
 import UserGrowthChart from "../components/charts/UserGrowthChart.jsx";
 import RevenueBreakdownChart from "../components/charts/RevenueBreakdownChart.jsx";
 import TopStreamedSongsChart from "../components/charts/TopStreamedSongsChart.jsx";
-import Table from "../components/dataTable/Table.jsx";
 import { Link } from "react-router-dom";
+import StreamTable from "../components/dataTable/StreamTable.jsx";
+import ArtistsTable from "../components/dataTable/ArtistsTable.jsx";
 
 const Dashboard = () => {
     const [openSidebar, setOpenSidebar] = useState(true);
@@ -75,7 +76,11 @@ const Dashboard = () => {
             </div>
             { recentStreams && recentStreams.length > 0 && (
                 <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl w-full">
-                    <Table recentStreams={recentStreams.slice(0,5)} />
+                    <h1 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white">
+                        Recent
+                        <span className="text-blue-600 dark:text-blue-500 ml-4">Streams</span>
+                    </h1>
+                    <StreamTable recentStreams={recentStreams.slice(0,5)} />
                     <div className="text-right mt-2">
                         <Link 
                             to="/streams"
@@ -86,6 +91,13 @@ const Dashboard = () => {
                     </div>
                 </div>
             ) }
+            <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl w-full my-4">
+                <h1 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white">
+                    Top
+                    <span className="text-blue-600 dark:text-blue-500 ml-4">Artists</span>
+                </h1>
+                <ArtistsTable />
+            </div>
         </section>
     );
 };

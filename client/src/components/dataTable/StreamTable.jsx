@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import { FaSort, FaSortUp, FaSortDown, FaSearch } from "react-icons/fa";
 
-const Table = ({ recentStreams }) => {
+const StreamTable = ({ recentStreams }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
     const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -82,14 +82,17 @@ const Table = ({ recentStreams }) => {
     return (
         <>
             {/* Filter Input */}
-            <div className="mb-4 flex justify-end">
-                <input
-                    type="text"
-                    placeholder="Filter by song or artist..."
-                    className="px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 dark:bg-gray-800 dark:text-white"
-                    value={filterQuery}
-                    onChange={(e) => setFilterQuery(e.target.value)}
-                />
+            <div className="flex justify-end mb-4">
+                <div className="mb-4 flex items-center">
+                    <FaSearch className="text-gray-400 mr-2" />
+                    <input
+                        type="text"
+                        placeholder="Filter by song or artist..."
+                        className="px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 dark:bg-gray-800 dark:text-white"
+                        value={filterQuery}
+                        onChange={(e) => setFilterQuery(e.target.value)}
+                    />
+                </div>
             </div>
 
             <div className="w-full overflow-x-auto">
@@ -176,4 +179,4 @@ const Table = ({ recentStreams }) => {
     );
 };
 
-export default Table;
+export default StreamTable;

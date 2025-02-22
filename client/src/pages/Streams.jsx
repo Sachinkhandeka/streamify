@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import data from "../api/data.js";
-import Table from "../components/dataTable/Table";
+import StreamTable from "../components/dataTable/StreamTable";
 import LoadingFallback from "../utils/LoadingFallback";
 
 const Streams = () => {
@@ -17,13 +17,16 @@ const Streams = () => {
         }, 1000);
     }, []);
     return (
-        <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl min-h-screen">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Recent Streams</h2>
+        <div className="p-1 bg-white dark:bg-gray-800 rounded-md h-screen">
+            <h1 className="mb-4 p-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white">
+                Recent
+                <span className="text-blue-600 dark:text-blue-500 ml-4">Streams</span>
+            </h1>
             {loading ? (
                 <LoadingFallback />
             ) : recentStreams.length > 0 ? (
                 <div className="w-full" >
-                    <Table recentStreams={recentStreams} />
+                    <StreamTable recentStreams={recentStreams} />
                 </div>
             ) : (
                 <p className="text-gray-600 dark:text-gray-300">No data available.</p>
