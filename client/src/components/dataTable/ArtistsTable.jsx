@@ -63,7 +63,7 @@ const ArtistsTable = ({ artistsData }) => {
 
     return (
         <>
-            <div className="p-1 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div className="p-1 bg-white rounded-lg dark:bg-gray-800">
                 <div className="flex justify-end mb-4">
                     <div className="flex items-center" >
                         <FaSearch className="text-gray-400 mr-2" />
