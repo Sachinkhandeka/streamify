@@ -5,6 +5,7 @@ import DashboardMetricsSkeleton from "../skeleton/DashboardMetricsSkeleton";
 import data from "../api/data.js";
 import artistsData from "../api/artists.js";
 import revenueData from "../api/revenue";
+import usersData from "../api/users.js";
 import UserGrowthChart from "../components/charts/UserGrowthChart.jsx";
 import RevenueBreakdownChart from "../components/charts/RevenueBreakdownChart.jsx";
 import TopStreamedSongsChart from "../components/charts/TopStreamedSongsChart.jsx";
@@ -12,6 +13,7 @@ import { Link } from "react-router-dom";
 import StreamTable from "../components/dataTable/StreamTable.jsx";
 import ArtistsTable from "../components/dataTable/ArtistsTable.jsx";
 import RevenueTable from "../components/dataTable/RevenueTable.jsx";
+import UsersTable from "../components/dataTable/UsersTable.jsx";
 
 const Dashboard = () => {
     const [openSidebar, setOpenSidebar] = useState(true);
@@ -28,6 +30,7 @@ const Dashboard = () => {
     const [recentStreams, setRecentStreams] = useState([]);
     const [artists, setArtists] = useState([]);
     const [revenue, setRevenue] = useState([]);
+    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -36,7 +39,7 @@ const Dashboard = () => {
 
             setRevenue(revenueData);
             setArtists(artistsData);
-
+            setUsers(usersData);
             if (data && data.metrics) {
                 const { totalUsers, activeUsers, totalStreams, revenue, topArtist } = data.metrics;
                 setMetricsData({ totalUsers, activeUsers, totalStreams, revenue, topArtist }); 
@@ -124,6 +127,21 @@ const Dashboard = () => {
                 <div className="text-right mt-2">
                     <Link 
                         to="/revenue"
+                            className="text-blue-500 hover:underline text-xs hover:font-bold"
+                    >
+                        View More →
+                    </Link>
+                </div>
+            </div>
+            <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl w-full my-4">
+                <h1 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white">
+                    Total
+                    <span className="text-blue-600 dark:text-blue-500 ml-4">Users</span>
+                </h1>
+                <UsersTable usersData={users.slice(0, 5)} />
+                <div className="text-right mt-2">
+                    <Link 
+                        to="/users"
                             className="text-blue-500 hover:underline text-xs hover:font-bold"
                     >
                         View More →

@@ -21,7 +21,7 @@ export default function App() {
         {/* Sidebar & Main Content */}
         <div>
           <Sidebar /> {/* Sidebar will always be visible */}
-          <main className="flex-grow p-1 bg-white dark:bg-gray-700">
+          <main className="flex-grow bg-white dark:bg-gray-700">
             <Routes>
               <Route
                 path="/"
