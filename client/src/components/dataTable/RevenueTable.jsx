@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
-import { FaSort, FaSearch } from 'react-icons/fa';
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
+import React, { useState } from "react";
+import { FaSearch, FaSort } from "react-icons/fa";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
-const ArtistsTable = ({ artistsData }) => {
+const RevenueTable = ({ revenueData }) => {
     const [search, setSearch] = useState('');
     const [sortColumn, setSortColumn] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10; 
-  
-    const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortOrder('asc');
-        }
-    };
+    const itemsPerPage = 5; 
 
-    const filteredArtists = artistsData?.filter(artist => 
-        artist.artistName.toLowerCase().includes(search.toLowerCase()) ||
-        artist.genre.toLowerCase().includes(search.toLowerCase())
+    const filteredRevenue = revenueData.filter(revenue => 
+        revenue.currency.toLowerCase().includes(search.toLowerCase())
     );
 
-    const sortedArtists = [...filteredArtists].sort((a, b) => {
+    const sortedRevenue = [...filteredRevenue].sort((a, b) => {
         if (!sortColumn) return 0;
         return sortOrder === 'asc' 
             ? a[sortColumn] > b[sortColumn] ? 1 : -1 
@@ -32,10 +22,10 @@ const ArtistsTable = ({ artistsData }) => {
 
 
     //calculate total pages
-    const totalPages = Math.ceil( filteredArtists.length / itemsPerPage ); 
+    const totalPages = Math.ceil( filteredRevenue.length / itemsPerPage ); 
 
     // slice data for thhe current page
-    const currentArtists = sortedArtists.slice(
+    const currentRevenue = sortedRevenue.slice(
         ( currentPage - 1 ) * itemsPerPage, currentPage * itemsPerPage
     );
 
@@ -45,6 +35,15 @@ const ArtistsTable = ({ artistsData }) => {
             setCurrentPage(newPage);
         }
     }
+
+    const handleSort = (column) => {
+        if (sortColumn === column) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortOrder('asc');
+        }
+    };
 
     // Highlight search term in results
     const highlightMatch = (text) => {
@@ -63,7 +62,7 @@ const ArtistsTable = ({ artistsData }) => {
 
     return (
         <>
-            <div className="p-1 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div className="p-1 bg-white rounded-lg shadow-lg dark:bg-gray-800" >
                 <div className="flex justify-end mb-4">
                     <div className="flex items-center" >
                         <FaSearch className="text-gray-400 mr-2" />
@@ -80,7 +79,7 @@ const ArtistsTable = ({ artistsData }) => {
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-400">
                             <tr>
-                                {['artistName', 'genre', 'totalStreams', 'followers', 'country'].map(col => (
+                                {['id', 'date', 'total revenue', 'subscription', 'ad', 'transactions', 'currency'].map(col => (
                                     <th key={col} className="px-4 py-2 cursor-pointer" onClick={() => handleSort(col)}>
                                         {col.charAt(0).toUpperCase() + col.slice(1)} <FaSort className="inline ml-1" />
                                     </th>
@@ -88,13 +87,15 @@ const ArtistsTable = ({ artistsData }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            { currentArtists.length > 0 && currentArtists.map(artist => (
-                                <tr key={artist.artistId} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <td className="px-4 py-2">{highlightMatch(artist.artistName)}</td>
-                                    <td className="px-4 py-2">{highlightMatch(artist.genre)}</td>
-                                    <td className="px-4 py-2">{artist.totalStreams.toLocaleString()}</td>
-                                    <td className="px-4 py-2">{artist.followers.toLocaleString()}</td>
-                                    <td className="px-4 py-2">{artist.country}</td>
+                            { currentRevenue.length > 0 && currentRevenue.map(revenue => (
+                                <tr key={revenue.id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <td className="px-4 py-2">{revenue.id}</td>
+                                    <td className="px-4 py-2">{revenue.date}</td>
+                                    <td className="px-4 py-2">{revenue.totalRevenue.toLocaleString()}</td>
+                                    <td className="px-4 py-2">{revenue.subscriptionRevenue.toLocaleString()}</td>
+                                    <td className="px-4 py-2">{revenue.adRevenue}</td>
+                                    <th className="px-4 py-2" >{revenue.transactions}</th>
+                                    <th className="px-4 py-2" >{highlightMatch(revenue.currency)}</th>
                                 </tr>
                             ))}
                         </tbody>
@@ -103,7 +104,7 @@ const ArtistsTable = ({ artistsData }) => {
             </div>
             {/* Pagination Controls */}
             {totalPages > 1 && (
-                <div className="flex justify-center items-center mt-4 space-x-2">
+                <div className="flex justify-center items-center my-4 space-x-2">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
@@ -115,9 +116,9 @@ const ArtistsTable = ({ artistsData }) => {
                     >
                         <MdNavigateBefore />
                     </button>
-                        <span className="text-gray-700 text-xs font-bold dark:text-gray-300">
-                            Page {currentPage} of {totalPages}
-                        </span>
+                    <span className="text-gray-700 text-xs font-bold dark:text-gray-300">
+                        Page {currentPage} of {totalPages}
+                    </span>
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
@@ -132,7 +133,8 @@ const ArtistsTable = ({ artistsData }) => {
                 </div>
             )}
         </>
-  );
-};
+    
+    )
+}
 
-export default ArtistsTable;
+export default RevenueTable

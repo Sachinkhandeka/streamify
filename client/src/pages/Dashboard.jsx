@@ -3,12 +3,15 @@ import { Sidebar } from "../layouts/Sidebar";
 import DashboardMetrics from "../components/metrics/DashboardMetrics";
 import DashboardMetricsSkeleton from "../skeleton/DashboardMetricsSkeleton";
 import data from "../api/data.js";
+import artistsData from "../api/artists.js";
+import revenueData from "../api/revenue";
 import UserGrowthChart from "../components/charts/UserGrowthChart.jsx";
 import RevenueBreakdownChart from "../components/charts/RevenueBreakdownChart.jsx";
 import TopStreamedSongsChart from "../components/charts/TopStreamedSongsChart.jsx";
 import { Link } from "react-router-dom";
 import StreamTable from "../components/dataTable/StreamTable.jsx";
 import ArtistsTable from "../components/dataTable/ArtistsTable.jsx";
+import RevenueTable from "../components/dataTable/RevenueTable.jsx";
 
 const Dashboard = () => {
     const [openSidebar, setOpenSidebar] = useState(true);
@@ -23,11 +26,17 @@ const Dashboard = () => {
     const [revenueBreakdown, setRevenueBreakdown] = useState([]);
     const [topStreamedSongs, setTopStreamedSongs] = useState([]);
     const [recentStreams, setRecentStreams] = useState([]);
+    const [artists, setArtists] = useState([]);
+    const [revenue, setRevenue] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulating fetching data with a delay
         setTimeout(() => {
+
+            setRevenue(revenueData);
+            setArtists(artistsData);
+
             if (data && data.metrics) {
                 const { totalUsers, activeUsers, totalStreams, revenue, topArtist } = data.metrics;
                 setMetricsData({ totalUsers, activeUsers, totalStreams, revenue, topArtist }); 
@@ -96,7 +105,30 @@ const Dashboard = () => {
                     Top
                     <span className="text-blue-600 dark:text-blue-500 ml-4">Artists</span>
                 </h1>
-                <ArtistsTable />
+                <ArtistsTable artistsData={artists.slice(0, 5)} />
+                <div className="text-right mt-2">
+                    <Link 
+                        to="/top-artists"
+                        className="text-blue-500 hover:underline text-xs hover:font-bold"
+                    >
+                        View More →
+                    </Link>
+                </div>
+            </div>
+            <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl w-full my-4">
+                <h1 className="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-4xl dark:text-white">
+                    Total
+                    <span className="text-blue-600 dark:text-blue-500 ml-4">Revenue</span>
+                </h1>
+                <RevenueTable revenueData={revenue.slice(0, 5)} />
+                <div className="text-right mt-2">
+                    <Link 
+                        to="/revenue"
+                            className="text-blue-500 hover:underline text-xs hover:font-bold"
+                    >
+                        View More →
+                    </Link>
+                </div>
             </div>
         </section>
     );
